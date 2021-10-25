@@ -1,4 +1,7 @@
-import { createApp } from 'vue'
-import App from './App.vue'
+import { createApp } from "vue";
+import App from "./App.vue";
+import TagsInput from "./components/TagsInput.vue";
 
-createApp(App).mount('#app')
+const app = createApp(App);
+app.component("tags-input", TagsInput);
+app.mount("#app");
