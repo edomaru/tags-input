@@ -3,14 +3,13 @@
     {{ tag }}
     <a @click.prevent="removeTag(index)" href="#">&times;</a>
   </div>
-  <hr />
-  {{ newTag }}
   <input
     type="text"
     v-model.trim="newTag"
     @keydown.enter="addNewTag"
     @keydown.delete="removeLastTag"
     @keydown.tab.prevent="addNewTag"
+    :class="{ 'tag-exists': tags.includes(newTag) }"
   />
 </template>
 
@@ -18,7 +17,7 @@
 export default {
   data: () => ({
     tags: ["vue", "react", "angular"],
-    newTag: "preact",
+    newTag: "",
   }),
   methods: {
     addNewTag () {
@@ -38,3 +37,10 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.tag-exists {
+  color: red; 
+  text-decoration: line-through
+}
+</style>
