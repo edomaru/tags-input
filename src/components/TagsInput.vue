@@ -9,7 +9,7 @@
     @keydown.enter="addNewTag"
     @keydown.delete="removeLastTag"
     @keydown.tab.prevent="addNewTag"
-    :class="{ 'tag-exists': tags.includes(newTag) }"
+    :class="{ 'tag-exists': isTagExists }"
   />
 </template>
 
@@ -19,28 +19,33 @@ export default {
     tags: ["vue", "react", "angular"],
     newTag: "",
   }),
+  computed: {
+    isTagExists() {
+      return this.tags.includes(this.newTag);
+    },
+  },
   methods: {
-    addNewTag () {
-      if (this.newTag) {
-        this.tags.push(this.newTag)
-        this.newTag = ""
+    addNewTag() {
+      if (this.newTag && !this.isTagExists) {
+        this.tags.push(this.newTag);
+        this.newTag = "";
       }
     },
-    removeTag (index) {
-      this.tags.splice(index, 1)
+    removeTag(index) {
+      this.tags.splice(index, 1);
     },
-    removeLastTag () {
+    removeLastTag() {
       if (this.newTag.length === 0) {
-        this.removeTag(this.tags.length - 1)
+        this.removeTag(this.tags.length - 1);
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style scoped>
 .tag-exists {
-  color: red; 
-  text-decoration: line-through
+  color: red;
+  text-decoration: line-through;
 }
 </style>
