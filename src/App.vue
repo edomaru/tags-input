@@ -1,11 +1,5 @@
 <script>
-import TagsInput from "./components/TagsInput.vue";
-
-export default {
-  components: {
-    // TagsInput,
-  },
-};
+export default {};
 </script>
 
 <template>
