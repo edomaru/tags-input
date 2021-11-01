@@ -1,10 +1,19 @@
 <script>
-export default {};
+export default {
+  data: () => ({
+    jsFrameworks: ["react.js", "vue.js", "angular"],
+  }),
+  mounted() {
+    setTimeout(() => {
+      this.jsFrameworks.push("svelte.js");
+    }, 3000);
+  },
+};
 </script>
 
 <template>
   <h1>Hello world</h1>
-  <tags-input />
+  <tags-input :selected-tags="jsFrameworks" />
 </template>
 
 <style>
